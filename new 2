@@ -1,0 +1,45 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+    
+    Dim oComment As Comment, cell As Range, strPrev As String
+
+    If Not Intersect(Target, Columns("A:L")) Is Nothing Then
+
+        For Each cell In Intersect(Target, Columns("A:L"))
+
+            Set oComment = Nothing
+            On Error Resume Next
+                Set oComment = cell.Comment
+            On Error GoTo 0
+
+            If Not oComment Is Nothing Then
+                strPrev = Mid(oComment.Text, InStr(oComment.Text, "Current value: ") + 15, 999)
+                oComment.Text Text:="Previous value: " & strPrev & Chr(10) & _
+                                    "Changed: " & Format(Now, "mmm dd, yyyy  h:mm AM/PM") & Chr(10) & _
+                                    "Current value: " & cell.Value
+                                    
+            ElseIf Not IsEmpty(cell) Then
+                cell.AddComment
+                cell.Comment.Text Text:="Previous value: Empty" & Chr(10) & _
+                                        "Changed: " & Format(Now, "mmm dd, yyyy  h:mm AM/PM") & Chr(10) & _
+                                        "Current value: " & cell.Value
+                cell.Comment.Shape.Width = 150
+                cell.Comment.Shape.Height = 35
+                
+            End If
+        Next cell
+    End If
+   
+End Sub
+Sub UpdateComment()
+    Dim str As String
+    Dim str1 As String
+    
+    'will take the current value and store it in a variable
+    str = ActiveCell.Value
+    'will take the previous comments and store it in a variable
+    str1 = ActiveCell.Comment.Text
+    
+    'Concatenate both values:
+    ActiveCell.Comment.Text Text:=str1 & Chr(10) & str & "     " & Now()
+    
+End Sub

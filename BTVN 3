@@ -1,0 +1,50 @@
+/* package whatever; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Ideone
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		//Số Chẵn 
+		System.out.println("Tìm Số Chẵn (Number even): từ 1 đến 100 :");
+		for(int i = 1;i <= 100 ; i++)
+		{
+			//Điều kiện số chẵn chia hêt cho 2 = 0
+			if(i%2==0)
+			{
+				System.out.println("Number even: "+i);
+			}
+		}
+		
+		System.out.println("Tìm Số lẻ (Number old): tư 1 đến 100 :");
+		for(int i = 1;i <= 100 ; i++)
+		{
+			//Điều kiện là số lẻ số dư chia hết cho 2 =1
+			if(i%2==1)
+			{
+				System.out.println("Number old: "+i);
+			}
+		}
+		
+		System.out.println("Tìm số chính phương tư 1 đến 100 :");
+		for(int i = 1;i <= 100 ; i++)
+		{
+			// Số chính phương sử dụng vòng lặp lồng nhau - điều kiện là j = 1 đến i 
+			// nếu j * j  = i thì là số chính phương
+			// ngươc lại không phải số chính phương
+			for(int j = 1;j <= i ; j++)
+			{
+				if(j * j == i)
+				{
+					System.out.println("Square Number "+i);
+				}
+			}
+		}
+		
+	}
+}

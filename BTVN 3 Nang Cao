@@ -1,0 +1,63 @@
+/* package whatever; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Ideone
+{
+	
+	 public static int[] addX(int n, int arr[], int x) 
+    { 
+        int i; 
+        int newarr[] = new int[n + 1]; 
+          for (i = 0; i < n; i++) 
+            newarr[i] = arr[i]; 
+        	newarr[n] = x; 
+        return newarr; 
+    } 
+    
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		
+		int _Even = 0;
+		int _old=0;
+		int _sqNumber=0;
+		
+        int _arrEven[] = { }; 
+        int _arrOld[] = { }; 
+        int _arrSqNumber[] = { }; 
+        
+        for(int i = 1;i <= 100 ; i++)
+		{
+			//Điều kiện số chẵn chia hêt cho 2 = 0
+			if(i%2==0)
+			{
+				_arrEven = addX(_Even, _arrEven, i);
+				_Even++;
+			}
+			//Điều kiện số lẽ chia hêt cho 2 = 0
+			if(i%2==1)
+			{
+				_arrOld = addX(_old, _arrOld, i);
+				_old++;
+			}
+			//Điều kiện Số chính Phương
+			for(int j= 1; j<=i;j++)	
+			{
+				if(j * j == i)
+				{
+					_arrSqNumber = addX(_sqNumber, _arrSqNumber, i);
+					_sqNumber++;
+				}
+			}
+		}
+		
+		// Print preview
+		
+        System.out.println("Number even: "+ Arrays.toString(_arrEven) + " and Total:"+_arrEven.length);
+		System.out.println("Number old: "+ Arrays.toString(_arrOld)+ " and Total:"+_arrOld.length);
+		System.out.println("Square Number "+ Arrays.toString(_arrSqNumber)+ " and Total:"+_arrSqNumber.length);
+	}
+}
